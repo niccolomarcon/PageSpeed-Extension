@@ -13,13 +13,16 @@ function getCurrentTabUrl(callback) {
 }
 
 // Attach the event listener.
-chrome.browserAction.onClicked.addListener(function(activeTab)
-{
+chrome.browserAction.onClicked.addListener(function(activeTab) {
   getCurrentTabUrl(function(URL) {
-    // Create the link for PageSpeed Insights.
-    var psiURL = 'https://developers.google.com/speed/pagespeed/insights/?url=' + encodeURIComponent(URL);
+    var psiAPI = 'https://developers.google.com/speed/pagespeed/insights/?url=';
 
-    // Open the Insights page in a new tab.
-    chrome.tabs.create({ url: psiURL });
+    chrome.storage.sync.get(function(item) {
+      if (item.psi) {
+        var psiURL = psiAPI + encodeURIComponent(URL);
+        chrome.tabs.create({url: psiURL});
+      }
+    });
+
   });
 });
