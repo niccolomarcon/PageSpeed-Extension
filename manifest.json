@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "Page Speed",
+  "description": "Check the performance of the current page",
+  "version": "0.1",
+
+  "browser_action": {
+    "default_title": "Check this page!"
+  },
+
+  "background": {
+    "scripts": [ "index.js" ]
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ]
+}
