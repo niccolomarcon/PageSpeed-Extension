@@ -1,10 +1,33 @@
 // Calls Google's APIs to get the result
-function callApi(callback) {
-  // Simulate the API call
-  callback({
-    mobile: 0,
-    desktop: 0
-  });
+function callApi(url, callback) {
+  var api = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=';
+  var enUrl = encodeURIComponent(url);
+  var mobileResult;
+
+  var mXmlHttp = new XMLHttpRequest();
+  var dXmlHttp = new XMLHttpRequest();
+  mXmlHttp.open('GET', api + enUrl + '&strategy=mobile', true);
+  dXmlHttp.open('GET', api + enUrl + '&strategy=desktop', true);
+
+  mXmlHttp.onreadystatechange = function() {
+    if (mXmlHttp.readyState == 4 && mXmlHttp.status == 200) {
+      var response = JSON.parse(mXmlHttp.responseText);
+      mobileResult = response.ruleGroups.SPEED.score;
+      dXmlHttp.send();
+    }
+  };
+
+  dXmlHttp.onreadystatechange = function() {
+    if (dXmlHttp.readyState == 4 && dXmlHttp.status == 200) {
+      var response = JSON.parse(dXmlHttp.responseText);
+      callback({
+        mobile: mobileResult,
+        desktop: response.ruleGroups.SPEED.score
+      });
+    }
+  };
+
+  mXmlHttp.send();
 }
 
 // Get the current tab URL using chrome extnsion's APIs
@@ -23,16 +46,10 @@ function getCurrentTabUrl(callback) {
 
 // Print the result
 function printResult(res) {
-  var thresholdGood = 85;
-  var thresholdWarn = 65;
-  var green  = '#009a2d';
-  var yellow = '#fda100';
-  var red    = '#dd4b39';
+  var thresholdGood = 85; var thresholdWarn = 65;
+  var green = '#009a2d'; var yellow = '#fda100'; var red = '#dd4b39';
 
-  var mColor;
-  var mClass;
-  var dColor;
-  var dClass;
+  var mColor; var mClass; var dColor; var dClass;
 
   // Check results for mobile
   if (res.mobile >= thresholdGood) {
@@ -77,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load URL tab
   getCurrentTabUrl(function(url) {
     // Get results with PSI's APIs
-    callApi(function(result) {
+    callApi(url, function(result) {
       // Show results
       printResult(result);
       // Open new tab(s) when clicking the "Show more" button
