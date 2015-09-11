@@ -1,0 +1,23 @@
+{
+  "name": "pse",
+  "version": "1.0.0",
+  "description": "Check the performance of the current page",
+  "main": "index.js",
+  "scripts": {
+    "start": "budo *.* --live"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niccolomarcon/PageSpeed-Extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niccolomarcon/PageSpeed-Extension/issues"
+  },
+  "homepage": "https://github.com/niccolomarcon/PageSpeed-Extension#readme",
+  "devDependencies": {
+    "budo": "^4.2.1",
+    "watchify": "^3.4.0"
+  }
+}
