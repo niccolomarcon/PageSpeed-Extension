@@ -16,21 +16,32 @@
     <div class="container" align="center">
       <h1>Results</h1>
 
+      <!-- Loading image -->
+      <img id="loading" class="loading" src="spin.png">
+
       <!-- Quick look at the results with an img and the score -->
-      <div class="row">
-        <div class="col-xs-6">
-          <!-- Mobile -->
-          <span id="mobileIcon" class="mobile"></span>
-          <h2 id="mobilePoints"></h2>
+      <!-- Icons -->
+      <div id="data">
+        <div class="row">
+          <div class="col-xs-6">
+            <span id="mobileIcon" class="mobile"></span>
+          </div>
+          <div class="col-xs-6">
+            <span id="desktopIcon" class="desktop"></span>
+          </div>
         </div>
-        <div class="col-xs-6">
-          <!-- Desktop -->
-          <span id="desktopIcon" class="desktop"></span>
-          <h2 id="desktopPoints"></h2>
+        <!-- Points -->
+        <div class="row">
+          <div class="col-xs-6">
+            <h2 id="mobilePoints"></h2>
+          </div>
+          <div class="col-xs-6">
+            <h2 id="desktopPoints"></h2>
+          </div>
         </div>
       </div>
 
-      <button id="show" class="btn btn-default">Show more!</button>
+      <button id="show" class="btn btn-primary">Show more!</button>
     </div>
 
     <script src="popup.js"></script>

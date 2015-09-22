@@ -8,6 +8,7 @@ span.glyphicon-cog {
   right: 5px;
   top: 5px;
   font-size: 25px;
+  color: black;
 }
 
 #desktopPoints {
@@ -39,3 +40,22 @@ span {
 .mobile_error { background:no-repeat url(sprite.png) 0 -31px; }
 .mobile_excellent { background:no-repeat url(sprite.png) -82px -31px; }
 .mobile_warning { background:no-repeat url(sprite.png) -18px -31px; }
+
+@keyframes loadingAnimation {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.loading {
+  height: 67px;
+  margin: 20px 30px 20px 30px;
+  display: block;
+  animation-name: loadingAnimation;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+}
+
+#data {
+  display: none;
+}

@@ -90,13 +90,20 @@ function printResult(res) {
   dIcon.className += dClass;
 }
 
+function toogleLoading() {
+  document.getElementById('data').style.display = 'block';
+  document.getElementById('loading').style.display = 'none';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Load URL tab
   getCurrentTabUrl(function(url) {
     // Get results with PSI's APIs
     callApi(url, function(result) {
       // Show results
+      toogleLoading();
       printResult(result);
+
       // Open new tab(s) when clicking the "Show more" button
       document.getElementById('show').addEventListener('click', function() {
         var psiAPI =

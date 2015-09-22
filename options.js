@@ -2,21 +2,18 @@
 function saveOptions() {
   var psi = document.getElementById('psi').checked;
   chrome.storage.sync.set({
-    psi: psi
+    'psi': psi
   }, function() {
-    // Show the alert
-    setTimeout(function() {
-      // Vanish the alert
-    }, 3000);
+    // Update status to let user know options were saved.
   });
 }
 
 // Restores select box and checkbox state using the preferences
 // stored in chrome.storage.
 function restoreOptions() {
-  // Use default value color = 'red' and likesColor = true.
+  // Use default value
   chrome.storage.sync.get({
-    psi: true
+    'psi': true
   }, function(items) {
     document.getElementById('psi').checked = items.psi;
   });
