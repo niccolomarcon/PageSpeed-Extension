@@ -109,7 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
         var psiAPI =
           'https://developers.google.com/speed/pagespeed/insights/?url=';
 
-        chrome.storage.sync.get(function(item) {
+        chrome.storage.sync.get({
+          'psi': true
+        }, function(item) {
           if (item.psi) {
             var psiURL = psiAPI + encodeURIComponent(url);
             chrome.tabs.create({url: psiURL});
