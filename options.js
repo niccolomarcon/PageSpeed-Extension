@@ -12,9 +12,7 @@ function saveOptions() {
 // stored in chrome.storage.
 function restoreOptions() {
   // Use default value
-  chrome.storage.sync.get({
-    'psi': true
-  }, function(items) {
+  chrome.storage.sync.get(defaultOptions, function(items) {
     document.getElementById('psi').checked = items.psi;
   });
 }

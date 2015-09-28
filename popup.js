@@ -14,6 +14,8 @@ function callApi(url, callback) {
       var response = JSON.parse(mXmlHttp.responseText);
       mobileResult = response.ruleGroups.SPEED.score;
       dXmlHttp.send();
+    } else {
+      error();
     }
   };
 
@@ -24,10 +26,19 @@ function callApi(url, callback) {
         mobile: mobileResult,
         desktop: response.ruleGroups.SPEED.score
       });
+    } else {
+      error();
     }
   };
 
   mXmlHttp.send();
+}
+
+// Display a message in an error box
+function error(mex) {
+  toogleLoading();
+  // Disabilitare il bottone
+  // Caricare l'alerts con il messaggio e mostrarlo
 }
 
 // Get the current tab URL using chrome extnsion's APIs
@@ -88,10 +99,11 @@ function printResult(res) {
   dPoints.innerHTML = res.desktop;
   dPoints.style.background = dColor;
   dIcon.className += dClass;
+
+  document.getElementById('data').style.display = 'block';
 }
 
 function toogleLoading() {
-  document.getElementById('data').style.display = 'block';
   document.getElementById('loading').style.display = 'none';
 }
 
@@ -106,14 +118,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Open new tab(s) when clicking the "Show more" button
       document.getElementById('show').addEventListener('click', function() {
-        var psiAPI =
-          'https://developers.google.com/speed/pagespeed/insights/?url=';
-
-        chrome.storage.sync.get({
-          'psi': true
-        }, function(item) {
+        chrome.storage.sync.get(defaultOptions, function(item) {
           if (item.psi) {
-            var psiURL = psiAPI + encodeURIComponent(url);
+            var psiURL = APIs.psi + encodeURIComponent(url);
             chrome.tabs.create({url: psiURL});
           }
         });
