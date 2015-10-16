@@ -17,7 +17,7 @@
       <h1>Results</h1>
 
       <!-- Loading image -->
-      <img id="loading" class="loading" src="spin.png">
+      <img id="loading" src="spin.png">
 
       <!-- Quick look at the results with an img and the score -->
       <!-- Icons -->
@@ -41,9 +41,17 @@
         </div>
       </div>
 
+      <div id="error" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+        I could not recive any response.
+        <a id="tryAgain" href="#">Try again.</a>
+      </div>
+
       <button id="show" class="btn btn-primary">Show more!</button>
     </div>
 
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="brackets.js" charset="utf-8"></script>-->
     <script src="defaults.js" charset="utf-8"></script>
     <script src="popup.js" charset="utf-8"></script>
 

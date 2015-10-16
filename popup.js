@@ -1,5 +1,5 @@
 // Calls Google's APIs to get the result
-function callApi(url, callback) {
+function callApi(url, callback, fallback) {
   var api = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=';
   var enUrl = encodeURIComponent(url);
   var mobileResult;
@@ -14,6 +14,8 @@ function callApi(url, callback) {
       var response = JSON.parse(mXmlHttp.responseText);
       mobileResult = response.ruleGroups.SPEED.score;
       dXmlHttp.send();
+    } else if (mXmlHttp.status != 200) {
+      fallback(1, 0, 0);
     }
   };
 
@@ -24,6 +26,8 @@ function callApi(url, callback) {
         mobile: mobileResult,
         desktop: response.ruleGroups.SPEED.score
       });
+    } else if (dXmlHttp.status != 200) {
+      fallback(1, 0, 0);
     }
   };
 
@@ -88,31 +92,31 @@ function printResult(res) {
   dPoints.innerHTML = res.desktop;
   dPoints.style.background = dColor;
   dIcon.className += dClass;
+
+  display(0, 0, 1);
 }
 
-function toogleLoading() {
-  document.getElementById('data').style.display = 'block';
-  document.getElementById('loading').style.display = 'none';
+function display(error, loading, data) {
+  document.getElementById('error').style.display   = error ? 'block' : 'none';
+  document.getElementById('loading').style.display = loading ? 'block' : 'none';
+  document.getElementById('data').style.display    = data ? 'block' : 'none';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   // Load URL tab
   getCurrentTabUrl(function(url) {
-    // Get results with PSI's APIs
-    callApi(url, function(result) {
-      // Show results
-      toogleLoading();
-      printResult(result);
-
-      // Open new tab(s) when clicking the "Show more" button
-      document.getElementById('show').addEventListener('click', function() {
-        chrome.storage.sync.get(defaultOptions, function(item) {
-          if (item.psi) {
-            var psiURL = APIs.psi + encodeURIComponent(url);
-            chrome.tabs.create({url: psiURL});
-          }
-        });
+    document.getElementById('show').addEventListener('click', function() {
+      chrome.storage.sync.get(defaultOptions, function(item) {
+        if (item.psi) {
+          var psiURL = APIs.psi + encodeURIComponent(url);
+          chrome.tabs.create({url: psiURL});
+        }
       });
     });
+    document.getElementById('tryAgain').onclick = function() {
+      display(0, 1, 0);
+      callApi(url, printResult, display);
+    };
+    callApi(url, printResult, display);
   });
 });

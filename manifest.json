@@ -3,7 +3,7 @@
 
   "name": "PageSpeed",
   "description": "Check the performance of the current page",
-  "version": "0.1",
+  "version": "1.0.0",
 
   "browser_action": {
     "default_title": "Check this page!",

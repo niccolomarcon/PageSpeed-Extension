@@ -20,6 +20,7 @@ span.glyphicon-cog {
   color: white;
   width: inherit;
 }
+
 /* Icons */
 span {
   display: block;
@@ -46,16 +47,21 @@ span {
   to   { transform: rotate(360deg); }
 }
 
-.loading {
+#loading {
   height: 67px;
   margin: 20px 30px 20px 30px;
   display: block;
   animation-name: loadingAnimation;
   animation-iteration-count: infinite;
   animation-duration: 2s;
-  animation-timing-function: linear;
+  animation-timing-function: cubic-bezier(0.63,-0.42, 0.25, 1); /*ease;*/
 }
 
 #data {
   display: none;
+}
+
+#error {
+  display: none;
+  margin-top: 15px;
 }
