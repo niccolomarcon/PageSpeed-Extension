@@ -1,0 +1,67 @@
+body {
+  width: 250px;
+  height: 210px;
+}
+
+span.glyphicon-cog {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 25px;
+  color: black;
+}
+
+#desktopPoints {
+  color: white;
+  width: inherit;
+}
+
+#mobilePoints {
+  color: white;
+  width: inherit;
+}
+
+/* Icons */
+span {
+  display: block;
+}
+
+.desktop {
+  width:46px;
+  height:31px;
+}
+.desktop_error { background:no-repeat url(sprite.png) -46px 0; }
+.desktop_excellent { background:no-repeat url(sprite.png) 0 0; }
+.desktop_warning { background:no-repeat url(sprite.png) -36px -31px; }
+
+.mobile {
+  width:18px;
+  height:34px;
+}
+.mobile_error { background:no-repeat url(sprite.png) 0 -31px; }
+.mobile_excellent { background:no-repeat url(sprite.png) -82px -31px; }
+.mobile_warning { background:no-repeat url(sprite.png) -18px -31px; }
+
+@keyframes loadingAnimation {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+#loading {
+  height: 67px;
+  margin: 20px 30px 20px 30px;
+  display: block;
+  animation-name: loadingAnimation;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.63,-0.42, 0.25, 1); /*ease;*/
+}
+
+#data {
+  display: none;
+}
+
+#error {
+  display: none;
+  margin-top: 15px;
+}
