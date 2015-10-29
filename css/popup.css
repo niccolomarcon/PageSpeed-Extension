@@ -30,17 +30,17 @@ span {
   width:46px;
   height:31px;
 }
-.desktop_error { background:no-repeat url(sprite.png) -46px 0; }
-.desktop_excellent { background:no-repeat url(sprite.png) 0 0; }
-.desktop_warning { background:no-repeat url(sprite.png) -36px -31px; }
+.desktop_error { background:no-repeat url(../media/sprite.png) -46px 0; }
+.desktop_excellent { background:no-repeat url(../media/sprite.png) 0 0; }
+.desktop_warning { background:no-repeat url(../media/sprite.png) -36px -31px; }
 
 .mobile {
   width:18px;
   height:34px;
 }
-.mobile_error { background:no-repeat url(sprite.png) 0 -31px; }
-.mobile_excellent { background:no-repeat url(sprite.png) -82px -31px; }
-.mobile_warning { background:no-repeat url(sprite.png) -18px -31px; }
+.mobile_error { background:no-repeat url(../media/sprite.png) 0 -31px; }
+.mobile_excellent { background:no-repeat url(../media/sprite.png) -82px -31px; }
+.mobile_warning { background:no-repeat url(../media/sprite.png) -18px -31px; }
 
 @keyframes loadingAnimation {
   from { transform: rotate(0deg); }
