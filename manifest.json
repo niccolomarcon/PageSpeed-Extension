@@ -5,12 +5,16 @@
   "description": "Check the performance of the current page",
   "version": "1.0.0",
   "icons": {
-    "64": "media/icon.png"
+    "16": "media/icon16.png",
+    "32": "media/icon32.png",
+    "48": "media/icon48.png",
+    "64": "media/icon64.png",
+    "128": "media/icon128.png",
+    "512": "media/icon512.png"
   },
 
   "browser_action": {
     "default_title": "Check this page!",
-    "default_icon": "media/icon.png",
     "default_popup": "popup.html"
   },
 
